@@ -1,17 +1,4 @@
-
-// let animal = {
-//     tipo: "Cachorro",
-//     nome: "Nina",
-//     idade: 14,
-//     raca: "Cocker Spaniel",
-//     porte: "Médio",
-//     sexo: "F",
-//     vacinado: true,
-//     tutor:{
-//         nome:"Josefina",
-//         telefone: "(11)99999-9999"
-//     }
-// }
+let divPet = document.getElementById('pets')
 
 let listaDeAnimais = [
     {
@@ -42,21 +29,7 @@ let listaDeAnimais = [
     }
 ]
 
-// function adicionarPet(tipo, nome, idade, raca, porte, sexo, vacinado, tutor){
-//     let novoPet = {
-//         tipo: tipo,
-//         nome: nome,
-//         idade: idade,
-//         raca: raca,
-//         porte: porte,
-//         sexo: sexo,
-//         vacinado: vacinado,
-//         tutor: tutor
-//     }
-//     listaDeAnimais.push(novoPet)
 
-//     console.log("Pet adicionado com sucesso!")
-// }
 
 //quando o nome do atributo e da variável for igual pode fazer assim:
 function adicionarPet(tipo, nome, idade, raca, porte, sexo, vacinado, tutor){
@@ -80,10 +53,35 @@ function adicionarPet(tipo, nome, idade, raca, porte, sexo, vacinado, tutor){
 function visualizarPets(){
     for(let i = 0; i<listaDeAnimais.length; i++){
         let animal = listaDeAnimais[i]
-        console.log("-----------------------------")
-        console.log("Nome do animal: " + animal.nome)
-        console.log("Tipo de animal: " + animal.tipo)
-        console.log("Sexo do animal: " + animal.sexo)
-        console.log("Nome do tutor: " + animal.tutor.nome)
+
+        let divConteudoPet = document.createElement('div')
+        divConteudoPet.setAttribute('class','bixinho')
+
+        let pSeparador = document.createElement('p')
+        pSeparador.textContent = "-----------------------------"
+
+        let pNomeAnimal = document.createElement('p')
+        pNomeAnimal.textContent = "Nome do Animal: " + animal.nome
+
+        let pTipoAnimal = document.createElement('p')
+        pTipoAnimal.textContent = "Tipo de Animal: " + animal.tipo
+
+        divConteudoPet.appendChild(pSeparador)
+        divConteudoPet.appendChild(pNomeAnimal)
+        divConteudoPet.appendChild(pTipoAnimal)
+
+        divPet.appendChild(divConteudoPet)
     }
 }
+
+function buscarPet(nomePet){ 
+    let resultado = listaDeAnimais.find((animal) => animal.nome === nomePet)
+    if (resultado == undefined){
+        console.log('Animal não encontrado')
+    } else{
+        console.log('Animal encontrado')
+    }
+}
+
+buscarPet('Zezin')
+buscarPet('Nina')
