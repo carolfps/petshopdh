@@ -30,9 +30,7 @@ let listaDeAnimais = [
 ]
 
 
-
-//quando o nome do atributo e da variável for igual pode fazer assim:
-function adicionarPet(tipo, nome, idade, raca, porte, sexo, vacinado, tutor){
+const adicionarPet = (tipo, nome, idade, raca, porte, sexo, vacinado, tutor) => {
     let novoPet = {
         tipo,
         nome,
@@ -50,31 +48,57 @@ function adicionarPet(tipo, nome, idade, raca, porte, sexo, vacinado, tutor){
 
 // adicionarPet("Pássaro", "Pina", 2, "Calopsita", "Pequeno", "F", true, {nome: "José", telefone: "(11)5999-9999"})
 
-function visualizarPets(){
-    for(let i = 0; i<listaDeAnimais.length; i++){
-        let animal = listaDeAnimais[i]
+const visualizarPets = () => {
+    
+    listaDeAnimais.forEach((animalDaLista,index)=>{
+    
+    let animal = animalDaLista
 
-        let divConteudoPet = document.createElement('div')
-        divConteudoPet.setAttribute('class','bixinho')
+    let divConteudoPet = document.createElement('div')
+    divConteudoPet.setAttribute('class','bixinho')
 
-        let pSeparador = document.createElement('p')
-        pSeparador.textContent = "-----------------------------"
+    let pSeparador = document.createElement('p')
+    pSeparador.textContent = "-----------------------------"
 
-        let pNomeAnimal = document.createElement('p')
-        pNomeAnimal.textContent = "Nome do Animal: " + animal.nome
+    let pNomeAnimal = document.createElement('p')
+    pNomeAnimal.textContent = "Nome do Animal: " + animal.nome
 
-        let pTipoAnimal = document.createElement('p')
-        pTipoAnimal.textContent = "Tipo de Animal: " + animal.tipo
+    let pTipoAnimal = document.createElement('p')
+    pTipoAnimal.textContent = "Tipo de Animal: " + animal.tipo
 
-        divConteudoPet.appendChild(pSeparador)
-        divConteudoPet.appendChild(pNomeAnimal)
-        divConteudoPet.appendChild(pTipoAnimal)
+    divConteudoPet.appendChild(pSeparador)
+    divConteudoPet.appendChild(pNomeAnimal)
+    divConteudoPet.appendChild(pTipoAnimal)
 
-        divPet.appendChild(divConteudoPet)
-    }
-}
+    divPet.appendChild(divConteudoPet)
+    })}
 
-function buscarPet(nomePet){ 
+
+// const visualizarPets = () =>{
+//     for(let i = 0; i<listaDeAnimais.length; i++){
+//         let animal = listaDeAnimais[i]
+
+//         let divConteudoPet = document.createElement('div')
+//         divConteudoPet.setAttribute('class','bixinho')
+
+//         let pSeparador = document.createElement('p')
+//         pSeparador.textContent = "-----------------------------"
+
+//         let pNomeAnimal = document.createElement('p')
+//         pNomeAnimal.textContent = "Nome do Animal: " + animal.nome
+
+//         let pTipoAnimal = document.createElement('p')
+//         pTipoAnimal.textContent = "Tipo de Animal: " + animal.tipo
+
+//         divConteudoPet.appendChild(pSeparador)
+//         divConteudoPet.appendChild(pNomeAnimal)
+//         divConteudoPet.appendChild(pTipoAnimal)
+
+//         divPet.appendChild(divConteudoPet)
+//     }
+// }
+
+const buscarPet = nomePet => { 
     let resultado = listaDeAnimais.find((animal) => animal.nome === nomePet)
     if (resultado == undefined){
         console.log('Animal não encontrado')
@@ -83,5 +107,17 @@ function buscarPet(nomePet){
     }
 }
 
-buscarPet('Zezin')
-buscarPet('Nina')
+// buscarPet('Zezin')
+// buscarPet('Nina')
+
+const removerPet = nomePet => {
+    let totalDePets = listaDeAnimais.length
+    listaDeAnimais = listaDeAnimais.filter((animal)=>{
+        return animal.nome != nomePet
+    })
+
+    if(totalDePets == listaDeAnimais.length){
+        return console.log("Não encontramos um animal com o nome de: " + nomePet)
+    }
+    console.log("O animal " + nomePet + " foi removido com sucesso")
+}
